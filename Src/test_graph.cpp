@@ -8,7 +8,6 @@ using namespace std;
 using namespace cimg_library;
 
 int main() {
-	cout << "Coucou \n ";
 	srand(time(NULL));
 
 	char * nomAlier = "Alier",
