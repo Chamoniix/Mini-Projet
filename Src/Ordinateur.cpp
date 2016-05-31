@@ -76,22 +76,39 @@ void Ordinateur::creerGrilleOrdi()
 
 bool Ordinateur::tirer(Grille* matriceEnnemie)
 {
+	cout << "Tour Ordinateur : ";
+	cout << endl;
 	int X, Y;
+	bool 
+		dispo = false,
+		touche = false;
 	srand(time(NULL));
-	X = rand() % 10;
-	Y = rand() % 10;
-	
+
+	while (dispo != true)
+	{
+		X = rand() % 10;
+		Y = rand() % 10;
+
+		if (matrice_->GetXYTire(X, Y) == 0)
+			dispo = true;
+		else if (matrice_->GetXYTire(X, Y) == 1)
+			dispo = false;
+	}
 
 	if (matriceEnnemie->GetXY(X, Y) == 0)
 	{
+		matriceEnnemie->SetXY(X, Y, 3);
 		cout << "Rate Ordi ! \n";
-		return false;
+		touche = false;
 	}
 	else if (matriceEnnemie->GetXY(X, Y) == 1)
 	{
+		matriceEnnemie->SetXY(X, Y, 2);
 		cout << "Touche Ordi! \n";
-		return true;
+		touche =  true;
 	}
 
-	return true;
+	matrice_->SetXYTire(X, Y, 1);
+	matrice_->afficherGrilleTire();
+	return touche;
 }

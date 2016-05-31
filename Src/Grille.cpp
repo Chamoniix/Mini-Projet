@@ -6,10 +6,15 @@ Grille::Grille()
 {
 	for (int i = 0; i < 10; i++)
 	{
-
 		for (int j = 0; j < 10; j++)
 			grille_[i][j] = 0;
 	}
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+			grilleTire_[i][j] = 0;
+	}
+
 }
 
 // Permet d'afficher la grille dans la console
@@ -27,6 +32,21 @@ void Grille::afficherGrille()
 		cout << "| "<<endl;
 	}
 		
+}
+void Grille::afficherGrilleTire()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		cout << "| ";
+		for (int j = 0; j < 10; j++)
+		{
+			cout << grilleTire_[i][j] << " ";
+
+
+		}
+		cout << "| " << endl;
+	}
+
 }
 
 //Permet de passer quatre cases concécutives de la matrice à 1

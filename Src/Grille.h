@@ -28,14 +28,17 @@ public :
 
 	//Retourne la valeur d'une case :
 	int GetXY(int X, int Y) { return grille_[X][Y]; };
+	int GetXYTire(int X, int Y) { return grilleTire_[X][Y]; };
 	//Setter
 	void SetXY(int X, int Y, int i){ grille_[X][Y] = i; };
+	void SetXYTire(int X, int Y, int i) { grilleTire_[X][Y] = i; };
 	//Donne le resultat du tir (Touché ou non) 
 	//bool tirer(int x, int y);
 	// Défini aléatoirement une case sur laqeulle l'IA tire, idem pour les tirs ennemis
 	bool tireEnnemieAlea(void);
 	
 	void afficherGrille();
+	void afficherGrilleTire();
 
 	bool testFinPartie();
 };

@@ -39,7 +39,8 @@ int main() {
 	// Dès qu'une fenêtre est fermée, on ferme tout ou si fin du jeu
 	while (!J1.isClosed() && !J1.isKeyESC() && !J2.isKeyQ() && !J2.isClosed() && !J2.isKeyESC() && !J2.isKeyQ() && fin != true)
 	{
-		
+		cout << "### Debut du tour ###\n\n";
+
 		J1.afficheGrille();
 		J2.afficheGrille();
 

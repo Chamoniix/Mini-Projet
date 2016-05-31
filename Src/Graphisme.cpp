@@ -31,7 +31,9 @@ Graph::Graph(char* nom, Grille * matrice)
 void Graph::affiche()
 {
 	unsigned char
-		rouge[3] {255, 0, 0};
+		rouge[3] { 255, 0, 0 },
+		vert[3]  { 0, 255, 0 },
+		bleu[3]  { 0, 0, 255 };
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -42,6 +44,18 @@ void Graph::affiche()
 			}
 			else if (matrice_->GetXY(i, j) == 1)
 				fenetre_->draw_fill(j * 50 + 15, i * 50 + 10, rouge);
+			else if (matrice_->GetXY(i, j) == 2)
+			{
+				fenetre_->draw_line(5 + j * 50, 5 + i * 50, 45 + j * 50, 45 + i * 50, vert);
+				fenetre_->draw_line(5 + j * 50, 45 + i * 50, 45 + j * 50, 5 + i * 50, vert);
+
+			}
+			else if (matrice_->GetXY(i, j) == 3)
+			{
+				fenetre_->draw_line(5 + j * 50, 5 + i * 50, 45 + j * 50, 45 + i * 50, bleu);
+				fenetre_->draw_line(5 + j * 50, 45 + i * 50, 45 + j * 50, 5 + i * 50, bleu);
+
+			}
 		}
 	}
 

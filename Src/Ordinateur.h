@@ -4,7 +4,7 @@
 #include "Joueur.h"
 #include "time.h"
 #include "Graphisme.h"
-
+#include <Windows.h>
 
 class Ordinateur :public Joueur
 {
