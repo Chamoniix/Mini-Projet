@@ -25,7 +25,6 @@ public :
 	// Ajoute un bateau pour la grille de l'ordinateur :
 	
 	void CreerGrilleOrdi();
-	void CreerGrilleJoueur();
 
 	//Retourne la valeur d'une case :
 	int GetXY(int X, int Y) { return grille_[X][Y]; };

@@ -50,7 +50,7 @@ bool Grille::ajouterBateau(int Ax, int Ay, int Bx, int By)
 			ok = true;
 		}
 		else
-			cout << "ERREUR1";
+			cout << "ERREUR1\n";
 		
 	}
 	/*
@@ -66,10 +66,10 @@ bool Grille::ajouterBateau(int Ax, int Ay, int Bx, int By)
 			ok = true;
 		}
 		else
-			cout << "ERREUR1";
+			cout << "ERREUR1\n";
 	}
 	else
-		cout << "ERREUR2";
+		cout << "ERREUR2\n";
 
 	return ok;
 }
@@ -137,15 +137,4 @@ void Grille::CreerGrilleOrdi()
 	}
 
 	
-}
-
-void Grille::CreerGrilleJoueur()
-{
-	for (int i = 0; i < 4; i++)
-	{
-		int ax, ay, bx, by;
-		cout << "Entrez Ax, Ay, Bx, By \n";
-		cin >> ax >> ay >> bx >> by;
-		ajouterBateau(ax, ay, bx, by);
-	}
 }
