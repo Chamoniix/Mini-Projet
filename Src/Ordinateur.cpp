@@ -2,6 +2,7 @@
 
 Ordinateur::Ordinateur(char *nom) :Joueur()
 {
+	nom_ = nom;
 	grid_ = new Graph(nom, matrice_);
 
 	matrice_->CreerGrilleOrdi();
@@ -73,10 +74,24 @@ void Ordinateur::creerGrilleOrdi()
 
 }
 
-/*bool Ordinateur::tirer(){
+bool Ordinateur::tirer(Grille* matriceEnnemie)
+{
 	int X, Y;
 	srand(time(NULL));
 	X = rand() % 10;
 	Y = rand() % 10;
-	return	matrice_->tirer(X, Y);
-}*/
+	
+
+	if (matriceEnnemie->GetXY(X, Y) == 0)
+	{
+		cout << "Rate Ordi ! \n";
+		return false;
+	}
+	else if (matriceEnnemie->GetXY(X, Y) == 1)
+	{
+		cout << "Touche Ordi! \n";
+		return true;
+	}
+
+	return true;
+}

@@ -7,10 +7,10 @@
 
 class Humain : public Joueur
 {
-	char* nom_;
+
 public:
 	Humain();
-	//bool tirer(int X, int Y);
+	bool tirer(Grille* matriceEnnemie);
 	
 };
 

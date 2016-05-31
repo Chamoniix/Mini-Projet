@@ -31,7 +31,7 @@ public :
 	//Setter
 	void SetXY(int X, int Y, int i){ grille_[X][Y] = i; };
 	//Donne le resultat du tir (Touché ou non) 
-	bool tirer(int x, int y);
+	//bool tirer(int x, int y);
 	// Défini aléatoirement une case sur laqeulle l'IA tire, idem pour les tirs ennemis
 	bool tireEnnemieAlea(void);
 	

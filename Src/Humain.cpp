@@ -10,7 +10,7 @@ Humain::Humain():Joueur(){
 	// Demande du nom
 	cout << "Quel est votre nom ?  :   "; cin >> nom; cout << endl;
 	nom_ = (char*)nom.c_str();
-
+	cout << *nom_;
 	// Création de l'affichage attaché à la grille
 	grid_ = new Graph(nom_, matrice_);
 	
@@ -41,6 +41,29 @@ Humain::Humain():Joueur(){
 	}
 }
 
-//bool Humain::tirer(int X, int Y){
-//	return matrice_->tirer(X, Y);
-//}
+bool Humain::tirer(Grille* matriceEnnemie){
+
+	int
+		*xy = new int[2],
+		x,
+		y;
+
+	cout << "#####  Tour de " << "J1" << "   ####\n";
+	cout << "CLiquez sur la case ou vous voulez tirer.\n";
+	
+	grid_->clic(xy);
+	x = *xy;
+	y = *(xy + 1);
+
+	if (matriceEnnemie->GetXY(x, y) == 0)
+	{
+		cout << "Rate Humain ! \n";
+		return false;
+	}
+	else if (matriceEnnemie->GetXY(x, y) == 1)
+	{
+		cout << "Touche Humain ! \n";
+		return true;
+	}
+
+}

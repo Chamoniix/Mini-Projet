@@ -11,7 +11,7 @@ class Ordinateur :public Joueur
 public:
 	Ordinateur(char* nom);
 	void creerGrilleOrdi();
-	//bool tirer();
+	bool tirer(Grille* matriceEnnemie);
 };
 
 

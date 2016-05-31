@@ -9,9 +9,15 @@ class Joueur
 protected:
 	Grille* matrice_;
 	Graph* grid_;
+	char * nom_;
 public:
 	Joueur();
 	void afficheGrille();
-	//virtual bool tirer() = 0;
+	Grille* getGrille() { return matrice_; };
+	virtual bool tirer(Grille* matriceEnnemie);
+	bool isClosed() { return grid_->isClosed(); };
+	bool isKeyESC() { return grid_->isKeyESC(); };
+	bool isKeyQ() { return grid_->isKeyQ(); };
+	char* getNom() { return nom_; };
 };
 #endif

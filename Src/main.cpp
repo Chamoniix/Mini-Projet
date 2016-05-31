@@ -13,24 +13,15 @@ using namespace cimg_library;
 int main() {
 	srand(time(NULL));
 
-	char * nomAlier = "Alier",
-		*nomEnemie = "Ennemie",
+	char
 		*nomOrdi = "Ordinateur1";
 
 	bool
-		ok;
+		fin = false,
+		tire;
 
-	int
-		i,
-		x1,
-		y1,
-		x2,
-		y2,
-		*xy1,
-		*xy2;
-
-	xy1 = new int[2];
-	xy2 = new int[2];
+	string
+		player = "Joueur1";
 
 	
 
@@ -45,12 +36,28 @@ int main() {
 
 	cout << "************** Debut du game *****************\n";
 
-
-	while (1)
+	// Dès qu'une fenêtre est fermée, on ferme tout ou si fin du jeu
+	while (!J1.isClosed() && !J1.isKeyESC() && !J2.isKeyQ() && !J2.isClosed() && !J2.isKeyESC() && !J2.isKeyQ() && fin != true)
 	{
 		
 		J1.afficheGrille();
 		J2.afficheGrille();
+
+		if (player == "Joueur1")
+		{
+			tire = J1.tirer(J2.getGrille());
+			
+
+			player = "Joueur2";
+
+		}
+		else if (player == "Joueur2")
+		{
+			tire = J2.tirer(J1.getGrille());
+
+			player = "Joueur1";
+
+		}
 
 
 
