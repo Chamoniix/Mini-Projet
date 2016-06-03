@@ -10,7 +10,7 @@ class Humain : public Joueur
 
 public:
 	Humain();
-	bool tirer(Grille* matriceEnnemie);
+	bool tirer(Grille* matriceEnnemie, Graph* gridEnnemie);
 	
 };
 

@@ -41,28 +41,30 @@ Humain::Humain():Joueur(){
 	}
 }
 
-bool Humain::tirer(Grille* matriceEnnemie){
+bool Humain::tirer(Grille* matriceEnnemie, Graph* gridEnnemie){
 
 	int
 		*xy = new int[2],
 		x,
 		y;
 
-	cout << "Tour Joueur : \n";
+	//cout << "Tour Joueur : \n";
 	cout << "CLiquez sur la case ou vous voulez tirer.\n";
 	
-	grid_->clic(xy);
+	gridEnnemie->clic(xy);
 	x = *xy;
 	y = *(xy + 1);
 
 	if (matriceEnnemie->GetXY(x, y) == 0)
 	{
-		cout << "Rate Humain ! \n";
+		matrice_->SetXYTire(x, y, 1);
+		cout << "Rate	 ! \n";
 		return false;
 	}
 	else if (matriceEnnemie->GetXY(x, y) == 1)
 	{
-		cout << "Touche Humain ! \n";
+		matrice_->SetXYTire(x, y, 2);
+		cout << "Touche ! \n";
 		return true;
 	}
 }

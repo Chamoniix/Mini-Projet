@@ -6,7 +6,7 @@ Ordinateur::Ordinateur(char *nom) :Joueur()
 	grid_ = new Graph(nom, matrice_);
 
 	matrice_->CreerGrilleOrdi();
-	grid_->affiche();
+	//grid_->affiche();  // A décommenter pour  debug
 };
 
 void Ordinateur::creerGrilleOrdi()
@@ -109,6 +109,6 @@ bool Ordinateur::tirer(Grille* matriceEnnemie)
 	}
 
 	matrice_->SetXYTire(X, Y, 1);
-	matrice_->afficherGrilleTire();
+	//matrice_->afficherGrilleTire();
 	return touche;
 }

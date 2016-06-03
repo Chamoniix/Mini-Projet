@@ -5,6 +5,7 @@
 #include "Joueur.h"
 #include "Humain.h"
 #include "Ordinateur.h"
+#include "Jeu.h"
 #include <string>
 
 using namespace std;
@@ -14,7 +15,7 @@ int main() {
 	srand(time(NULL));
 
 	char
-		*nomOrdi = "Ordinateur1";
+		*nomOrdi = "Ordinateur";
 
 	bool
 		fin = false,
@@ -27,42 +28,19 @@ int main() {
 
 	// ************** Création d'une partie **************
 
-	Humain J1;
-
-	Ordinateur J2(nomOrdi);
 
 
+	Jeu Partie(nomOrdi, "Humain", "Ordi");
 
 
 	cout << "************** Debut du game *****************\n";
 
 	// Dès qu'une fenêtre est fermée, on ferme tout ou si fin du jeu
-	while (!J1.isClosed() && !J1.isKeyESC() && !J2.isKeyQ() && !J2.isClosed() && !J2.isKeyESC() && !J2.isKeyQ() && fin != true)
+	do 
 	{
-		cout << "### Debut du tour ###\n\n";
 
-		J1.afficheGrille();
-		J2.afficheGrille();
-
-		if (player == "Joueur1")
-		{
-			tire = J1.tirer(J2.getGrille());
-			
-
-			player = "Joueur2";
-
-		}
-		else if (player == "Joueur2")
-		{
-			tire = J2.tirer(J1.getGrille());
-
-			player = "Joueur1";
-
-		}
-
-
-
-	}
+		Partie.choix();
+	} while (Partie.isClosed() && fin != true);
 
 
 	return 0;

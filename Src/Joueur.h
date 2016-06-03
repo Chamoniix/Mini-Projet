@@ -14,7 +14,8 @@ public:
 	Joueur();
 	void afficheGrille();
 	Grille* getGrille() { return matrice_; };
-	virtual bool tirer(Grille* matriceEnnemie);
+	Graph* getGraph() { return grid_; };
+	virtual bool tirer(Grille* matriceEnnemie, Graph* gridEnnemie);
 	bool isClosed() { return grid_->isClosed(); };
 	bool isKeyESC() { return grid_->isKeyESC(); };
 	bool isKeyQ() { return grid_->isKeyQ(); };

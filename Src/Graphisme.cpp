@@ -5,9 +5,10 @@ Graph::Graph(char* nom, Grille * matrice)
 	matrice_ = matrice;
 
 	unsigned char
-		bleu[3] { 255, 255, 255 };
-
-	// Déclare une mage
+		bleu[3]{ 255, 255, 255 },
+		blanc[3]{ 0,0,255 };
+		
+	// Déclare une image
 	fenetre_ = new CImg <unsigned char> (500, 500, 1, 3, 0);
 
 	// Déssine une grille 10x10 sur l'image
@@ -23,7 +24,6 @@ Graph::Graph(char* nom, Grille * matrice)
 	// Centre la fenetre :
 	disp_->move((CImgDisplay::screen_width() - disp_->width()) / 2,
 		(CImgDisplay::screen_height() - disp_->height()) / 2);
-
 
 
 }
@@ -44,12 +44,14 @@ void Graph::affiche()
 			}
 			else if (matrice_->GetXY(i, j) == 1)
 				fenetre_->draw_fill(j * 50 + 15, i * 50 + 10, rouge);
+
 			else if (matrice_->GetXY(i, j) == 2)
 			{
 				fenetre_->draw_line(5 + j * 50, 5 + i * 50, 45 + j * 50, 45 + i * 50, vert);
 				fenetre_->draw_line(5 + j * 50, 45 + i * 50, 45 + j * 50, 5 + i * 50, vert);
 
 			}
+
 			else if (matrice_->GetXY(i, j) == 3)
 			{
 				fenetre_->draw_line(5 + j * 50, 5 + i * 50, 45 + j * 50, 45 + i * 50, bleu);

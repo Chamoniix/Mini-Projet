@@ -10,10 +10,16 @@ class Grille
 	//Attributs de Grille :
 
 	int grille_[10][10];
+	/*
+	- 0 : Case sans bateau
+	- 1 : Bateau
+	*/
+
 	int grilleTire_[10][10];
 	/*
-	- 0 : Case sans bateau 
-	...
+	- 0 : Pas encore tiré
+	- 1 : tire raté
+	- 2 : tire touché
 	*/
 
 public :

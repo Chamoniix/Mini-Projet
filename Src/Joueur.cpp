@@ -8,9 +8,10 @@ Joueur::Joueur()
 void Joueur::afficheGrille()
 {
 	grid_->affiche();
+
 }
 
-bool Joueur::tirer(Grille* matriceEnnemie)
+bool Joueur::tirer(Grille* matriceEnnemie, Graph* gridEnnemie)
 {
 	return false;
 }
