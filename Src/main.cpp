@@ -33,12 +33,9 @@ int main() {
 	Jeu Partie(nomOrdi, "Humain", "Ordi");
 
 
-	cout << "************** Debut du game *****************\n";
-
 	// Dès qu'une fenêtre est fermée, on ferme tout ou si fin du jeu
 	do 
 	{
-
 		Partie.choix();
 	} while (Partie.isClosed() && fin != true);
 

@@ -4,6 +4,7 @@
 #include "Joueur.h"
 #include "Ordinateur.h"
 #include "Humain.h"
+#include <fstream>
 
 class Jeu
 {

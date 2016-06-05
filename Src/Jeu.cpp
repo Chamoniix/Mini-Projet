@@ -59,12 +59,13 @@ void Jeu::choix()
 
 	char *nomOrdi = "Ordinateur";
 
-	cout << "Que voulez vous faire ? \n: ";
+	cout << "Que voulez vous faire ?  :  \n";
 	cout << "  -  1  : Nouvelle partie\n";
 	cout << "  -  2  : Reprendre partie\n";
 	cout << "  -  3  : Sauvegarder\n";
 	cout << "  -  4  : Charger\n";
-	cout << "  -  5  : Quitter\n";
+	cout << "  -  5  : Aide\n";
+	cout << "  -  6  : Quitter\n";
 
 	cin >> choix;
 	
@@ -72,6 +73,26 @@ void Jeu::choix()
 	{
 		creerPartie(nomOrdi, "Humain", "Ordi");
 		jouer();
+
+	}
+
+	else if (choix == 5)
+	{
+				
+		system("cls");
+		ifstream aide("Aide.txt");
+		if (!aide)
+			cout << "Erreur ouverture Aide \n";
+		else
+		{
+			string aff;
+			while (getline(aide, aff))
+			{
+				cout << aff << endl;
+			}
+			system("pause");
+		}
+		system("cls");
 
 	}
 

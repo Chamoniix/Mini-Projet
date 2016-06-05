@@ -41,7 +41,7 @@ Humain::Humain():Joueur(){
 	}
 }
 
-bool Humain::tirer(Grille* matriceEnnemie, Graph* gridEnnemie){
+bool Humain::tirer(Grille* matriceEnnemie, Graph* gridTire){
 
 	int
 		*xy = new int[2],
@@ -51,7 +51,7 @@ bool Humain::tirer(Grille* matriceEnnemie, Graph* gridEnnemie){
 	//cout << "Tour Joueur : \n";
 	cout << "CLiquez sur la case ou vous voulez tirer.\n";
 	
-	gridEnnemie->clic(xy);
+	gridTire->clic(xy);
 	x = *xy;
 	y = *(xy + 1);
 

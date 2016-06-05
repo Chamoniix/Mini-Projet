@@ -1,0 +1,5 @@
+Bienvenu sur l'aide de la bataille navale.
+Votre but est de detruire les bateaux adverses,
+il y a 6 bateaux de 4 cases a detruire.
+Lors du debut d'une partie cliquer sur 2cases separes de 4cases pour placer vos navires.
+La partie se termine quand l'un des joueurs n'a plus de bateaux en vie.
