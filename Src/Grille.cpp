@@ -26,12 +26,12 @@ void Grille::afficherGrille()
 		for (int j = 0; j < 10; j++)
 		{
 			cout << grille_[i][j] << " ";
-			
-			
+
+
 		}
-		cout << "| "<<endl;
+		cout << "| " << endl;
 	}
-		
+
 }
 void Grille::afficherGrilleTire()
 {
@@ -53,37 +53,68 @@ void Grille::afficherGrilleTire()
 bool Grille::ajouterBateau(int Ax, int Ay, int Bx, int By)
 {
 	// Bool est retrouné true si le bateau est correctement placé
-	bool ok=false;
+	bool 
+		ok = false,
+		testPlaceLibre = true;
 
-
-
-	/*
-	(0,0)  ->  (0,3)  : même COLONNE : Xdeb = Ydeb
-	
-	*/
+	int c = 0;
+	// Colonne :
 	if (Ax == Bx)
 	{
 		if (abs(Ay - By) == 3)
 		{
-			for (int j = Ay; j <= By; j++)
-				grille_[Ax][j] = 1;
-			ok = true;
+			if (By < Ay)
+			{
+				c = By;
+				By = Ay;
+				Ay = c;
+			}
+
+			for (int i = Ay; i <= By; i++)
+			{
+				if (grille_[Ax][i] == 1)
+				{
+					testPlaceLibre = false;
+					cout << "Erreur 3\n";
+				}
+			}
+			if (testPlaceLibre == true)
+			{
+				for (int j = Ay; j <= By; j++)
+					grille_[Ax][j] = 1;
+				ok = true;
+			}
 		}
 		else
 			cout << "ERREUR1\n";
-		
-	}
-	/*
-	(0,0)  ->  (3,0)  : même LIGNE : Xdeb = Ydeb
 
-	*/
+	}
+	// Ligne : 
 	else if (Ay == By)
 	{
 		if (abs(Ax - Bx) == 3)
 		{
+			if (Bx < Ax)
+			{
+				c = Bx;
+				Bx = Ax;
+				Ax = c;
+			}
+
 			for (int i = Ax; i <= Bx; i++)
-				grille_[i][Ay] = 1;
-			ok = true;
+			{
+				if (grille_[i][Ay] == 1)
+				{
+					testPlaceLibre = false;
+					cout << "Erreur 3\n";
+				}
+			}
+			if (testPlaceLibre == true)
+			{
+				for (int i = Ax; i <= Bx; i++)
+					grille_[i][Ay] = 1;
+				ok = true;
+			}
 		}
 		else
 			cout << "ERREUR1\n";
@@ -105,7 +136,7 @@ void Grille::CreerGrilleOrdi()
 		oriente,
 		BateauOK = 0;
 
-	for (int k = 0; k < 4;)
+	for (int k = 0; k < 6;)
 	{
 		testPlaceLibre = true;
 
@@ -118,7 +149,7 @@ void Grille::CreerGrilleOrdi()
 		{
 			if (x < 7)
 			{
-				
+
 				for (int i = x; i <= x + 3; i++)
 				{
 					if (grille_[i][y] == 1)
@@ -129,7 +160,7 @@ void Grille::CreerGrilleOrdi()
 				{
 					for (int i = x; i <= x + 3; i++)
 						grille_[i][y] = 1;
-					
+
 					k++;
 				}
 			}
@@ -138,7 +169,7 @@ void Grille::CreerGrilleOrdi()
 		{
 			if (y < 7)
 			{
-				
+
 				for (int i = y; i <= y + 3; i++)
 				{
 					if (grille_[x][i] == 1)
@@ -156,5 +187,47 @@ void Grille::CreerGrilleOrdi()
 		}
 	}
 
-	
+
+}
+void Grille::sauver(ofstream &save) {
+	if (save) {
+		save << "Grille Bateaux  : " << endl;
+		for (int x = 0; x < 10; x++) {
+			for (int y = 0; y < 10; y++) {
+				save << grille_[x][y] << endl;
+			}
+		}
+		save << "Grille Tir  : " << endl;
+		for (int x = 0; x < 10; x++) {
+			for (int y = 0; y < 10; y++) {
+				save << grilleTire_[x][y] << endl;
+			}
+		}
+	}
+	else cerr << "ERREUR DE SAUVEGARDE!!!" << endl;
+}
+
+void Grille::charger(ifstream &save) {
+
+
+	string recup;
+	if (save) {
+		//Recuperation de la Grille de bateaux
+
+		int* p = &grille_[0][0];
+		for (int i = 0; i < 100; i++) {
+			getline(save, recup);
+			p[i] = stoi(recup);
+		}
+		getline(save, recup);
+		//Récupération de la grille de tir
+		int* t = &grilleTire_[0][0];
+		for (int i = 0; i < 100; i++) {
+			getline(save, recup);
+			t[i] = stoi(recup);
+		}
+	}
+	else cerr << "ERREUR DE CHARGEMENT !!!!" << endl;
+
+
 }

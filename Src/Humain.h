@@ -7,11 +7,15 @@
 
 class Humain : public Joueur
 {
-
+	
 public:
 	Humain();
-	bool tirer(Grille* matriceEnnemie, Graph* gridEnnemie);
-	
+	Humain(int i);
+	Humain(ifstream &save);
+	bool tirer(Grille* matriceEnnemie, int scoreEnnemie);
+	void charger(ifstream &file);
+	void sauver(string nom);
+
 };
 
 #endif

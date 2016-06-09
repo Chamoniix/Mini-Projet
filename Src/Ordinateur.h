@@ -10,8 +10,11 @@ class Ordinateur :public Joueur
 {
 public:
 	Ordinateur(char* nom);
+	Ordinateur(int i);
 	void creerGrilleOrdi();
-	bool tirer(Grille* matriceEnnemie);
+	bool tirer(Grille* matriceEnnemie, int scoreEnnemie);
+	void charger(ifstream &file);
+	void sauver(string nom);
 };
 
 

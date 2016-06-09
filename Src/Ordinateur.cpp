@@ -3,11 +3,17 @@
 Ordinateur::Ordinateur(char *nom) :Joueur()
 {
 	nom_ = nom;
-	grid_ = new Graph(nom, matrice_);
+	//grid_ = new Graph(nom, matrice_);
 
 	matrice_->CreerGrilleOrdi();
-	//grid_->affiche();  // A décommenter pour  debug
-};
+}
+Ordinateur::Ordinateur(int i)
+{
+	nom_ = "Ordi";
+	grid_ = new Graph(nom_, matrice_);
+}
+
+
 
 void Ordinateur::creerGrilleOrdi()
 {
@@ -35,14 +41,14 @@ void Ordinateur::creerGrilleOrdi()
 
 				for (int i = x; i <= x + 3; i++)
 				{
-					if (matrice_->GetXY(i,y) == 1)
+					if (matrice_->GetXY(i, y) == 1)
 						testPlaceLibre = false;
 				}
 
 				if (testPlaceLibre == true)
 				{
 					for (int i = x; i <= x + 3; i++)
-						matrice_->SetXY(i,y,1);
+						matrice_->SetXY(i, y, 1);
 
 					k++;
 				}
@@ -55,14 +61,14 @@ void Ordinateur::creerGrilleOrdi()
 
 				for (int i = y; i <= y + 3; i++)
 				{
-					if (matrice_->GetXY(x,i) == 1)
+					if (matrice_->GetXY(x, i) == 1)
 						testPlaceLibre = false;
 				}
 
 				if (testPlaceLibre == true)
 				{
 					for (int i = y; i <= y + 3; i++)
-						matrice_->SetXY(x,i,1);
+						matrice_->SetXY(x, i, 1);
 
 					k++;
 				}
@@ -74,12 +80,10 @@ void Ordinateur::creerGrilleOrdi()
 
 }
 
-bool Ordinateur::tirer(Grille* matriceEnnemie)
+bool Ordinateur::tirer(Grille* matriceEnnemie, int scoreEnnemie)
 {
-	cout << "Tour Ordinateur : ";
-	cout << endl;
 	int X, Y;
-	bool 
+	bool
 		dispo = false,
 		touche = false;
 	srand(time(NULL));
@@ -98,17 +102,58 @@ bool Ordinateur::tirer(Grille* matriceEnnemie)
 	if (matriceEnnemie->GetXY(X, Y) == 0)
 	{
 		matriceEnnemie->SetXY(X, Y, 3);
-		cout << "Rate Ordi ! \n";
+		cout << "Tour du Joueur 2 :   ";
+		cout << "Rate ! \n" << endl << endl;
+		cout << "    SCORE :     # Huamin : " << scoreEnnemie << " - Ordinateur : " << score_ << " # \n";
 		touche = false;
 	}
 	else if (matriceEnnemie->GetXY(X, Y) == 1)
 	{
 		matriceEnnemie->SetXY(X, Y, 2);
-		cout << "Touche Ordi! \n";
-		touche =  true;
+		itScore();
+		cout << "Tour du Joueur 2 :   ";
+		cout << "Touche ! \n" << endl << endl;
+		cout << "    SCORE :     # Huamin : " << scoreEnnemie << " - Ordinateur : " << score_ << " # \n";
+		touche = true;
 	}
 
 	matrice_->SetXYTire(X, Y, 1);
 	//matrice_->afficherGrilleTire();
 	return touche;
+}
+
+void Ordinateur::charger(ifstream& file)
+{
+	string ligne = "";
+
+	// On récupère le nom dans ligne
+	getline(file, ligne);
+	ligne = ligne.substr(6, ligne.size() - 6);
+
+	// On récuère le nom : 
+	nomString_ = ligne;
+
+	if (nom_ == NULL)
+		nom_ = new char;
+
+	nom_ = (char *)ligne.c_str();
+
+	getline(file, ligne);
+
+	// On charge les deux matrices en mémoire :
+	matrice_->charger(file);
+
+}
+
+void Ordinateur::sauver(string nom)
+{
+	string nomFichier;
+	nomFichier = nom;
+	nomFichier += ".txt";
+
+	// ios::app permet de ne pas remplacer le fichier s'il existe deja
+	ofstream file(nomFichier, ios::app);
+
+	file << "Nom : " << nom_ << endl;
+	matrice_->sauver(file);
 }
