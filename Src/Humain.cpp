@@ -13,7 +13,7 @@ Humain::Humain() :Joueur() {
 	cout << "Quel est votre nom ?  :   "; cin >> nomString_; cout << endl;
 	nom_ = (char*)nomString_.c_str();
 
-	// Création de l'affichage attaché à la grille
+	// CrÃ©ation de l'affichage attachÃ© Ã  la grille
 	grid_ = new Graph(nom_, matrice_);
 
 	system("cls");
@@ -23,10 +23,10 @@ Humain::Humain() :Joueur() {
 
 	cout << "Placez vos bateux en clicant sur la grille portant votre nom.\n" << endl << endl;
 
-	// Création des bateaux :
+	// CrÃ©ation des bateaux :
 	for (int k = 1; k <= 6;)
 	{
-		// On actualise la fenêtre :
+		// On actualise la fenÃªtre :
 		grid_->affiche();
 
 		if (k == 1)
@@ -34,13 +34,13 @@ Humain::Humain() :Joueur() {
 		else
 			cout << "*" << k << "eme bateau : cliquez sur les 2 cases reliant le tableau \n";
 
-		// Récupère 2 clic :
+		// RÃ©cupÃ¨re 2 clic :
 		grid_->clic(xy1);
 		grid_->fillCase(*xy1, *(xy1 + 1), rose);
 		grid_->clic(xy2);
 		grid_->fillCase(*xy1, *(xy1 + 1), noir);
 
-		// Ajout du bateau à la grille Joueur :
+		// Ajout du bateau Ã  la grille Joueur :
 		bateauOK = matrice_->ajouterBateau(*xy1, *(xy1 + 1), *xy2, *(xy2 + 1));
 
 		if (bateauOK)
@@ -64,7 +64,7 @@ Humain::Humain(int i) :Joueur() {
 }
 
 Humain::Humain(ifstream &save) :Joueur() {
-	nom_ = "Partie Chargée";
+	nom_ = "Partie ChargÃ©e";
 	matrice_->charger(save);
 	grid_ = new Graph(nom_, matrice_);
 	grid_->affiche();
@@ -82,13 +82,15 @@ bool Humain::tirer(Grille* matriceEnnemie, int scoreEnnemie) {
 		isM = false;
 
 	afficheGrille();
-	
-	isM = grid_->clicTir(xy);
+	do {
+		isM = grid_->clicTir(xy);
+		x = *xy;
+		y = *(xy + 1);
+	} while (matrice_->GetXYTire(x, y) != 0);
 
 	if (!isM)
 	{
-		x = *xy;
-		y = *(xy + 1);
+	
 
 		if (matriceEnnemie->GetXY(x, y) == 0)
 		{
@@ -133,11 +135,11 @@ void Humain::charger(ifstream &file)
 {
 	string ligne = "";
 
-	// On récupère le nom dans ligne
+	// On rÃ©cupÃ¨re le nom dans ligne
 	getline(file, ligne);
 	ligne = ligne.substr(6, ligne.size() - 6);
 
-	// On récuère le nom : 
+	// On rÃ©cuÃ¨re le nom : 
 	nomString_ = ligne;
 
 	if (nom_ == NULL)
@@ -147,7 +149,7 @@ void Humain::charger(ifstream &file)
 
 	getline(file, ligne);
 
-	// On charge les deux matrices en mémoire :
+	// On charge les deux matrices en mÃ©moire :
 	matrice_->charger(file);
 
 }
