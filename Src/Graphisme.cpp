@@ -33,6 +33,7 @@ Graph::Graph(char* nom, Grille * matrice)
 
 }
 
+// Fonction affiche
 void Graph::affiche()
 {
 	unsigned char
