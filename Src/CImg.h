@@ -1,4 +1,4 @@
-/*
+/* Petit test mamen
  #
  #  File            : CImg.h
  #                    ( C++ header file )
